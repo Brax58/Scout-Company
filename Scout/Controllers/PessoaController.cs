@@ -6,5 +6,10 @@ namespace Scout.Controllers
     [Route("api/[Controller]")]
     public class PessoaController : ControllerBase
     {
+        [HttpGet]
+        public void insertPesoa() 
+        {
+        
+        }
     }
 }

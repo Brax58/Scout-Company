@@ -6,5 +6,10 @@ namespace Scout.Controllers
     [Route("api/[Controller]")]
     public class PostController : ControllerBase
     {
+        [HttpGet]
+        public void CadastroDadosPrimarios()
+        {
+
+        }
     }
 }
