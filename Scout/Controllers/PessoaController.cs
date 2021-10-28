@@ -6,10 +6,28 @@ namespace Scout.Controllers
     [Route("api/[Controller]")]
     public class PessoaController : ControllerBase
     {
+        [HttpPost]
+        public void InsertLogin()
+        {
+
+        }
+
+        [HttpPut]
+        public void InsertImagem()
+        {
+
+        }
+
+        [HttpPut]
+        public void InsertDescricao()
+        {
+
+        }
+
         [HttpGet]
-        public void insertPesoa() 
+        public void GetFotoPerfil() 
         {
         
-        }
+        } 
     }
 }
