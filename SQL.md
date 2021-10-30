@@ -1,4 +1,4 @@
-create database scout;
+/*create database scout;
 use scout;
 
 create table pessoa(
@@ -21,5 +21,9 @@ FOREIGN KEY (idPessoa) REFERENCES pessoa(id)
 insert into pessoa (id,login,senha,email,imagem,descricao) values("0f8fad5b-d9cb-469f-a165-70867728950e","seila","123456","monaxbr32@gmail.com",null,null);
 insert into post (id,imagem,descricao,idPessoa) values("7c9e6679-7425-40de-944b-e07fc1f90ae7",null,null,"0f8fad5b-d9cb-469f-a165-70867728950e");
 
-select * from pessoa;
-select * from post;
+ALTER TABLE pessoa modify login varchar(70);
+ALTER TABLE pessoa modify senha varchar(70);
+ALTER TABLE pessoa modify email varchar(100);
+ALTER TABLE post modify descricao varchar(1500);
+*/
+

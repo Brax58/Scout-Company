@@ -7,9 +7,7 @@ namespace Scout.Controllers
     public class PessoaController : ControllerBase
     {
         [HttpPost]
-        public void InsertLogin()
-        {
-
+        public void InsertLogin()  {
         }
 
         [HttpPut]
@@ -28,6 +26,11 @@ namespace Scout.Controllers
         public void GetFotoPerfil() 
         {
         
-        } 
+        }
+
+        public void LogarScout() 
+        {
+        
+        }
     }
 }
