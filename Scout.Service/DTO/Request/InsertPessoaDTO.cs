@@ -1,4 +1,4 @@
-﻿namespace Scout.Service.DTO
+﻿namespace Scout.Service.DTO.Request
 {
     public class InsertPessoaDTO
     {

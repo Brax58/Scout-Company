@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Scout.Controllers
+namespace Scout.Api.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]

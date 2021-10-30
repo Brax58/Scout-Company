@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Scout.Service.DTO
+namespace Scout.Service.DTO.Request
 {
     public class InsertImagemPessoaDTO
     {
