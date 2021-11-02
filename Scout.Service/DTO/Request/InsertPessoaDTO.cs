@@ -2,7 +2,7 @@
 {
     public class InsertPessoaDTO
     {
-        public string Login { get; }
+        public string Login { get; set; }
         public string Senha { get; set; }
         public string Email { get; set; }
 

@@ -6,16 +6,16 @@ namespace Scout.Api.Controllers
     [Route("api/[Controller]")]
     public class PostController : ControllerBase
     {
-        [HttpPost]
-        public void InsertPost()
-        {
+        //[HttpPost]
+        //public void InsertPost()
+        //{
 
-        }
+        //}
 
-        [HttpGet]
-        public void GetPost()
-        {
+        //[HttpGet]
+        //public void GetPost()
+        //{
 
-        }
+        //}
     }
 }
