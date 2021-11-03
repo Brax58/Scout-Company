@@ -11,6 +11,8 @@
 
         public static string LogarLoginSQL = @"select p.id from pessoa p where p.login = @login;";
 
+        public static string VerificarPessoaSQL = @"select p.login from pessoa p where p.id = @id";
+
         public static string GetFotoSQL = @"select p.imagemPessoa from pessoa p where p.id = @id;";
 
 

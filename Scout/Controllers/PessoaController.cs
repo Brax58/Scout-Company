@@ -12,31 +12,38 @@ namespace Scout.Api.Controllers
     [Route("api/[Controller]")]
     public class PessoaController : ControllerBase
     {
-        public readonly PessoaService _service;
+        public readonly InsertLoginPessoaService _InsertPessoaservice;
+        public readonly InsertImagemPessoaService _InsertImagemservice;
 
-        public PessoaController(PessoaService service)
+        public PessoaController(InsertLoginPessoaService insertPessoaService, InsertImagemPessoaService insertImagemService)
         {
-            _service = service;
+            _InsertPessoaservice = insertPessoaService;
+            _InsertImagemservice = insertImagemService;
         }
 
         [HttpPost]
-        public async Task<ActionResult> InsertLogin([FromBody]InsertPessoaDTO request)  
+        public async Task<ActionResult> InsertLogin([FromBody] InsertPessoaDTO request)
         {
-            var result = await _service.InsertPessoa(request);
+            var result = await _InsertPessoaservice.InsertPessoa(request);
 
-            if (result.Erros.Count >= 1) 
-            {
+            if (result.Erros.Count >= 1)
                 return BadRequest(result.Erros);
-            }
-            
+
             return Ok(result.Id);
         }
 
-        //[HttpPut]
-        //public void InsertImagem()
-        //{
+        [HttpPost("{idPessoa}/Imagens")]
+        public async Task<ActionResult> InsertImagem([FromRoute] Guid idPessoa, [FromBody] InsertImagemPessoaDTO request)
+        {
+            request.Id = idPessoa;
 
-        //}
+            var result = await _InsertImagemservice.InsertImagemPessoa(request);
+
+            if (result.Erros.Count >= 1)
+                return BadRequest(result.Erros);
+
+            return Ok();
+        }
 
         //[HttpPut]
         //public void InsertDescricao()
@@ -47,12 +54,12 @@ namespace Scout.Api.Controllers
         //[HttpGet]
         //public void GetFotoPerfil() 
         //{
-        
+
         //}
 
         //public void LogarScout() 
         //{
-        
+
         //}
     }
 }

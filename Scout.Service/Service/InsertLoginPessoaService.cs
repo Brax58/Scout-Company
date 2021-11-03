@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Scout.Service.Service
 {
-    public class PessoaService
+    public class InsertLoginPessoaService
     {
         public readonly PessoaRepository _repository;
 
-        public PessoaService(PessoaRepository repository)
+        public InsertLoginPessoaService(PessoaRepository repository)
         {
             _repository = repository;
         }

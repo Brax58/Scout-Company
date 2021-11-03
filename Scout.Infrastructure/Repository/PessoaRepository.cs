@@ -25,7 +25,7 @@ namespace Scout.Infrastructure.Repository
             }
         }
 
-        public Guid GetPessoaById(string login)
+        public Guid GetPessoaByLogin(string login)
         {
             using (MySqlConnection conn = new MySqlConnection(Environment.GetEnvironmentVariable("ConnectionBase")))
             {
@@ -34,17 +34,21 @@ namespace Scout.Infrastructure.Repository
                 var parametros = new DynamicParameters();
                 parametros.Add("@login", login);
 
-                var result = conn.QueryFirstOrDefault<Guid>(QueryStringPessoa.LogarLoginSQL, parametros);
-                return result;
+                return conn.QueryFirstOrDefault<Guid>(QueryStringPessoa.LogarLoginSQL, parametros);
             }
         }
 
-        //protected List<T> Query<T>(string sql, object parameters = null)
-        //{
-        //    using (MySqlConnection conn = new MySqlConnection(Environment.GetEnvironmentVariable("ConnectionBase")))
-        //    {
-        //        return conn.Query<T>(sql, parameters).ToList();
-        //    }
-        //}
+        public string GetPessoaById(Guid id)
+        {
+            using (MySqlConnection conn = new MySqlConnection(Environment.GetEnvironmentVariable("ConnectionBase")))
+            {
+                conn.Open();
+
+                var parametros = new DynamicParameters();
+                parametros.Add("@id", id);
+
+                return conn.QueryFirstOrDefault<string>(QueryStringPessoa.VerificarPessoaSQL, parametros);
+            }
+        }
     }
 }
