@@ -65,5 +65,19 @@ namespace Scout.Infrastructure.Repository
                 await conn.ExecuteAsync(QueryStringPessoa.InsertImagemSQL, parametros);
             }
         }
+
+        public async Task InsertDescricao(Guid id,string descricao) 
+        {
+            using (MySqlConnection conn = new MySqlConnection(Environment.GetEnvironmentVariable("ConnectionBase")))
+            {
+                conn.Open();
+
+                var parametros = new DynamicParameters();
+                parametros.Add("@id", id);
+                parametros.Add("@descricao", descricao);
+
+                await conn.ExecuteAsync(QueryStringPessoa.InsertDescricaoSQL, parametros);
+            }
+        }
     }
 }

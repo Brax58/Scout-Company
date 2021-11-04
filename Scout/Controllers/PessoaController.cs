@@ -14,11 +14,14 @@ namespace Scout.Api.Controllers
     {
         public readonly InsertLoginPessoaService _InsertPessoaservice;
         public readonly InsertImagemPessoaService _InsertImagemservice;
+        public readonly InsertDescricaoPessoaService _InsertDescricaoservice;
 
-        public PessoaController(InsertLoginPessoaService insertPessoaService, InsertImagemPessoaService insertImagemService)
+        public PessoaController(InsertLoginPessoaService insertPessoaService, InsertImagemPessoaService insertImagemService,
+                                InsertDescricaoPessoaService insertDescricaoPessoaService)
         {
             _InsertPessoaservice = insertPessoaService;
             _InsertImagemservice = insertImagemService;
+            _InsertDescricaoservice = insertDescricaoPessoaService;
         }
 
         [HttpPost]
@@ -32,7 +35,7 @@ namespace Scout.Api.Controllers
             return Ok(result.Id);
         }
 
-        [HttpPost("{idPessoa}/Imagens")]
+        [HttpPost("{idPessoa}/Imagem")]
         public async Task<ActionResult> InsertImagem([FromRoute] Guid idPessoa, [FromBody] InsertImagemPessoaDTO request)
         {
             request.Id = idPessoa;
@@ -44,12 +47,19 @@ namespace Scout.Api.Controllers
 
             return Ok(result.Success);
         }
+        
+        [HttpPost("{idPessoa}/Descricao")]
+        public async Task<ActionResult> InsertDescricao([FromRoute] Guid idPessoa, [FromBody] InsertDescricaoDTO request)
+        {
+            request.Id = idPessoa;
 
-        //[HttpPut]
-        //public void InsertDescricao()
-        //{
+            var result = await _InsertDescricaoservice.InsertDescricaoPessoa(request);
 
-        //}
+            if (result.Erro != null)
+                return BadRequest(result.Erro);
+
+            return Ok(result.Success);
+        }
 
         //[HttpGet]
         //public void GetFotoPerfil() 

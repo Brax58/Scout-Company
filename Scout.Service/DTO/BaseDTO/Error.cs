@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Scout.Service.DTO.BaseDTO
+﻿namespace Scout.Service.DTO.BaseDTO
 {
     public class Error
     {
