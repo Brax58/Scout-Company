@@ -47,7 +47,22 @@ namespace Scout.Infrastructure.Repository
                 var parametros = new DynamicParameters();
                 parametros.Add("@id", id);
 
-                return conn.QueryFirstOrDefault<string>(QueryStringPessoa.VerificarPessoaSQL, parametros);
+                    var a = conn.QueryFirstOrDefault<string>(QueryStringPessoa.VerificarPessoaSQL, parametros);
+                return a;
+            }
+        }
+
+        public async Task InsertImagem(Guid id,byte[] imagem)
+        {
+            using (MySqlConnection conn = new MySqlConnection(Environment.GetEnvironmentVariable("ConnectionBase")))
+            {
+                conn.Open();
+
+                var parametros = new DynamicParameters();
+                parametros.Add("@id", id);
+                parametros.Add("@imagem", imagem);
+
+                await conn.ExecuteAsync(QueryStringPessoa.InsertImagemSQL, parametros);
             }
         }
     }

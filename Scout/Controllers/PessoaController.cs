@@ -26,8 +26,8 @@ namespace Scout.Api.Controllers
         {
             var result = await _InsertPessoaservice.InsertPessoa(request);
 
-            if (result.Erros.Count >= 1)
-                return BadRequest(result.Erros);
+            if (result.Erro != null)
+                return BadRequest(result.Erro);
 
             return Ok(result.Id);
         }
@@ -39,10 +39,10 @@ namespace Scout.Api.Controllers
 
             var result = await _InsertImagemservice.InsertImagemPessoa(request);
 
-            if (result.Erros.Count >= 1)
-                return BadRequest(result.Erros);
+            if (result.Erro != null)
+                return BadRequest(result.Erro);
 
-            return Ok();
+            return Ok(result.Success);
         }
 
         //[HttpPut]

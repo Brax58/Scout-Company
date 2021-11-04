@@ -20,7 +20,7 @@ namespace Scout.Service.Service
         {
             var result = new ResponseCadastroPessoaDTO();
 
-            if (_repository.GetPessoaById(request.Login) != Guid.Empty) 
+            if (_repository.GetPessoaByLogin(request.Login) != Guid.Empty) 
             {
                 result.AddError("Pessoa já existente!","400");
                 return result;

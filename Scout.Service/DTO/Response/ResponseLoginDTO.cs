@@ -3,7 +3,7 @@ using System;
 
 namespace Scout.Service.DTO.Response
 {
-    public class ResponseLoginDTO : Errors
+    public class ResponseLoginDTO : Error
     {
         public Guid Id { get; set; }
     }

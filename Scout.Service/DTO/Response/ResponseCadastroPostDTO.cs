@@ -2,7 +2,7 @@
 
 namespace Scout.Service.DTO.Response
 {
-    public class ResponseCadastroPostDTO : Errors
+    public class ResponseCadastroPostDTO : Error
     {
         public string Success { get; set; }
 

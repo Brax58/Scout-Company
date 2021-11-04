@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Scout.Service.DTO.Response
 {
-    public class ResponseGetPostDTO : Errors
+    public class ResponseGetPostDTO : Error
     {
         public List<Post> Posts { get; set; }
 

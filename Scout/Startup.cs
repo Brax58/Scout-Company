@@ -30,6 +30,7 @@ namespace Scout
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<InsertLoginPessoaService>();
+            services.AddScoped<InsertImagemPessoaService>();
             services.AddScoped<PessoaRepository>();
 
             services.AddControllers();

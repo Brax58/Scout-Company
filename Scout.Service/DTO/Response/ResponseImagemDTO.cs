@@ -2,7 +2,7 @@
 
 namespace Scout.Service.DTO.Response
 {
-    public class ResponseImagemDTO : Errors
+    public class ResponseImagemDTO : Error
     {
         public string Success { get; set; }
 

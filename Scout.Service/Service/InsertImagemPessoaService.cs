@@ -18,12 +18,21 @@ namespace Scout.Service.Service
             _repository = repository;
         }
 
-        public async Task<ResponseImagemDTO> InsertImagemPessoa(InsertImagemPessoaDTO request) 
+        public async Task<ResponseImagemDTO> InsertImagemPessoa(InsertImagemPessoaDTO request)
         {
-            if (_repository.GetPessoaById(request.Id) != "") 
+            var response = new ResponseImagemDTO();
+
+            if (_repository.GetPessoaById(request.Id) == null)
             {
-                
+                response.AddError("Pessoa não existe!", "404");
+                return response;
             }
+
+            var imagem = Convert.FromBase64String(request.Imagem);
+            await _repository.InsertImagem(request.Id, imagem);
+
+            response.AddResponseSuccess();
+            return response;
         }
     }
 }
