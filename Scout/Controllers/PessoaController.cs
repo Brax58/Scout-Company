@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Scout.Service.DTO.Request;
+using Scout.Service.DTO.Response;
 using System;
 using System.Threading.Tasks;
 
@@ -65,10 +66,15 @@ namespace Scout.Api.Controllers
             return Ok(result.Success);
         }
 
-        //[HttpGet]
-        //public void GetFotoPerfil() 
-        //{
+        [HttpGet("Imagem")]
+        public async Task<IActionResult> GetFotoPerfil([FromQuery] GetFotoDTO request)
+        {
+            var result = await _mediator.Send(request);
 
-        //}
+            if (result.Erro != null)
+                return BadRequest(result.Erro);
+
+            return Ok(result.Imagem);
+        }
     }
 }

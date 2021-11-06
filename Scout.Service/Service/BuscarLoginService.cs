@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Scout.Service.Service
 {
-    public class BuscarLoginService : IRequestHandler<LogarSiteDTO,ResponseLoginDTO>
+    public class BuscarLoginService : IRequestHandler<LogarSiteDTO, ResponseLoginDTO>
     {
         private readonly IPessoaRepository _repository;
 
@@ -17,7 +17,7 @@ namespace Scout.Service.Service
             _repository = repository;
         }
 
-        public Task<ResponseLoginDTO> Handle(LogarSiteDTO request,CancellationToken cancellationToken)
+        public Task<ResponseLoginDTO> Handle(LogarSiteDTO request, CancellationToken cancellationToken)
         {
             var response = new ResponseLoginDTO();
 

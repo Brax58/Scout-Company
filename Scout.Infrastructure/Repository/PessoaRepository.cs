@@ -15,14 +15,14 @@ namespace Scout.Infrastructure.Repository
             using (MySqlConnection conn = new MySqlConnection(Environment.GetEnvironmentVariable("ConnectionBase")))
             {
                 conn.Open();
-                
-                var parametros = new DynamicParameters();
-                parametros.Add("@id",pessoa.Id);
-                parametros.Add("@login",pessoa.Login);
-                parametros.Add("@senha",pessoa.Senha);
-                parametros.Add("@email",pessoa.Email);
 
-                await conn.ExecuteAsync(QueryStringPessoa.CadastrarLoginSQL, parametros);  
+                var parametros = new DynamicParameters();
+                parametros.Add("@id", pessoa.Id);
+                parametros.Add("@login", pessoa.Login);
+                parametros.Add("@senha", pessoa.Senha);
+                parametros.Add("@email", pessoa.Email);
+
+                await conn.ExecuteAsync(QueryStringPessoa.CadastrarLoginSQL, parametros);
             }
         }
 
@@ -48,12 +48,24 @@ namespace Scout.Infrastructure.Repository
                 var parametros = new DynamicParameters();
                 parametros.Add("@id", id);
 
-                    var a = conn.QueryFirstOrDefault<string>(QueryStringPessoa.VerificarPessoaSQL, parametros);
-                return a;
+                return conn.QueryFirstOrDefault<string>(QueryStringPessoa.VerificarPessoaSQL, parametros);
             }
         }
 
-        public async Task InsertImagem(Guid id,byte[] imagem)
+        public byte[] GetFotoById(Guid id)
+        {
+            using (MySqlConnection conn = new MySqlConnection(Environment.GetEnvironmentVariable("ConnectionBase")))
+            {
+                conn.Open();
+
+                var parametros = new DynamicParameters();
+                parametros.Add("@id", id);
+
+                return conn.QueryFirstOrDefault<byte[]>(QueryStringPessoa.GetFotoSQL, parametros);
+            }
+        }
+
+        public async Task InsertImagem(Guid id, byte[] imagem)
         {
             using (MySqlConnection conn = new MySqlConnection(Environment.GetEnvironmentVariable("ConnectionBase")))
             {
@@ -67,7 +79,7 @@ namespace Scout.Infrastructure.Repository
             }
         }
 
-        public async Task InsertDescricao(Guid id,string descricao) 
+        public async Task InsertDescricao(Guid id, string descricao)
         {
             using (MySqlConnection conn = new MySqlConnection(Environment.GetEnvironmentVariable("ConnectionBase")))
             {
