@@ -1,24 +1,24 @@
-﻿using Scout.Infrastructure.Repository;
+﻿using MediatR;
+using Scout.Infrastructure.Interface;
+using Scout.Infrastructure.Repository;
 using Scout.Service.DTO.Request;
 using Scout.Service.DTO.Response;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Scout.Service.Service
 {
-    public class InsertImagemPessoaService
+    public class InsertImagemPessoaService : IRequestHandler<InsertImagemPessoaDTO, ResponseImagemDTO>
     {
-        public readonly PessoaRepository _repository;
+        public readonly IPessoaRepository _repository;
 
-        public InsertImagemPessoaService(PessoaRepository repository)
+        public InsertImagemPessoaService(IPessoaRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<ResponseImagemDTO> InsertImagemPessoa(InsertImagemPessoaDTO request)
+        public async Task<ResponseImagemDTO> Handle(InsertImagemPessoaDTO request,CancellationToken cancellationToken)
         {
             var response = new ResponseImagemDTO();
 

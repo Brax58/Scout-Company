@@ -1,13 +1,14 @@
 ﻿using Dapper;
 using MySqlConnector;
 using Scout.Domain.Entity;
+using Scout.Infrastructure.Interface;
 using Scout.Infrastructure.Queries;
 using System;
 using System.Threading.Tasks;
 
 namespace Scout.Infrastructure.Repository
 {
-    public class PessoaRepository
+    public class PessoaRepository : IPessoaRepository
     {
         public async Task InsertPessoa(Pessoa pessoa)
         {

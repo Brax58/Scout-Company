@@ -1,3 +1,4 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -8,11 +9,14 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Scout.Api.Controllers;
+using Scout.Infrastructure.Interface;
 using Scout.Infrastructure.Repository;
+using Scout.Service.DTO.Request;
 using Scout.Service.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Scout
@@ -29,10 +33,12 @@ namespace Scout
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<InsertLoginPessoaService>();
-            services.AddScoped<InsertImagemPessoaService>();
-            services.AddScoped<InsertDescricaoPessoaService>();
-            services.AddScoped<PessoaRepository>();
+            services.AddMediatR(typeof(Startup));
+
+            services.AddMediatR(typeof(LogarSiteDTO).GetTypeInfo().Assembly);
+
+            services.AddScoped(typeof(IPessoaRepository), typeof(PessoaRepository));
+            services.AddScoped(typeof(IPostRepository), typeof(PostRepository));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

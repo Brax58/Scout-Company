@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Scout.Service.DTO.BaseDTO;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Scout.Service.DTO.Request;
-using Scout.Service.DTO.Response;
-using Scout.Service.Service;
 using System;
 using System.Threading.Tasks;
 
@@ -12,22 +10,28 @@ namespace Scout.Api.Controllers
     [Route("api/[Controller]")]
     public class PessoaController : ControllerBase
     {
-        public readonly InsertLoginPessoaService _InsertPessoaservice;
-        public readonly InsertImagemPessoaService _InsertImagemservice;
-        public readonly InsertDescricaoPessoaService _InsertDescricaoservice;
+        public readonly IMediator _mediator;
 
-        public PessoaController(InsertLoginPessoaService insertPessoaService, InsertImagemPessoaService insertImagemService,
-                                InsertDescricaoPessoaService insertDescricaoPessoaService)
+        public PessoaController(IMediator mediator)
         {
-            _InsertPessoaservice = insertPessoaService;
-            _InsertImagemservice = insertImagemService;
-            _InsertDescricaoservice = insertDescricaoPessoaService;
+            _mediator = mediator;
         }
 
         [HttpPost]
         public async Task<ActionResult> InsertLogin([FromBody] InsertPessoaDTO request)
         {
-            var result = await _InsertPessoaservice.InsertPessoa(request);
+            var result = await _mediator.Send(request);
+
+            if (result.Erro != null)
+                return BadRequest(result.Erro);
+
+            return Ok(result.Id);
+        }
+
+        [HttpGet("")]
+        public async Task<ActionResult> LogarPessoa([FromQuery] LogarSiteDTO request = null)
+        {
+            var result = await _mediator.Send(request);
 
             if (result.Erro != null)
                 return BadRequest(result.Erro);
@@ -40,20 +44,20 @@ namespace Scout.Api.Controllers
         {
             request.Id = idPessoa;
 
-            var result = await _InsertImagemservice.InsertImagemPessoa(request);
+            var result = await _mediator.Send(request);
 
             if (result.Erro != null)
                 return BadRequest(result.Erro);
 
             return Ok(result.Success);
         }
-        
+
         [HttpPost("{idPessoa}/Descricao")]
         public async Task<ActionResult> InsertDescricao([FromRoute] Guid idPessoa, [FromBody] InsertDescricaoDTO request)
         {
             request.Id = idPessoa;
 
-            var result = await _InsertDescricaoservice.InsertDescricaoPessoa(request);
+            var result = await _mediator.Send(request);
 
             if (result.Erro != null)
                 return BadRequest(result.Erro);
@@ -63,11 +67,6 @@ namespace Scout.Api.Controllers
 
         //[HttpGet]
         //public void GetFotoPerfil() 
-        //{
-
-        //}
-
-        //public void LogarScout() 
         //{
 
         //}
