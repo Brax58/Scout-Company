@@ -12,5 +12,6 @@ namespace Scout.Infrastructure.Interface
         Task InsertImagem(Guid id, byte[] imagem);
         Task InsertDescricao(Guid id, string descricao);
         byte[] GetFotoById(Guid id);
+        Task DeletePessoa(Guid id);
     }
 }

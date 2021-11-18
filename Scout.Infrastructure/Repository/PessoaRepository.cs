@@ -92,5 +92,18 @@ namespace Scout.Infrastructure.Repository
                 await conn.ExecuteAsync(QueryStringPessoa.InsertDescricaoSQL, parametros);
             }
         }
+
+        public async Task DeletePessoa(Guid id)
+        {
+            using (MySqlConnection conn = new MySqlConnection(Environment.GetEnvironmentVariable("ConnectionBase")))
+            {
+                conn.Open();
+
+                var parametros = new DynamicParameters();
+                parametros.Add("@id", id);
+
+                await conn.ExecuteAsync(QueryStringPessoa.DeletePessoaSQL, parametros);
+            }
+        }
     }
 }

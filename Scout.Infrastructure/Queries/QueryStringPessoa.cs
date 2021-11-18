@@ -15,6 +15,7 @@
 
         public static string GetFotoSQL = @"select p.imagemPessoa from pessoa p where p.id = @id;";
 
+        public static string DeletePessoaSQL = @"delete from pessoa where id = @id;";
 
     }
 }

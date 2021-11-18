@@ -5,11 +5,11 @@ namespace Scout.Service.DTO.Response
 {
     public class ResponseGetPostDTO : Error
     {
-        public List<Post> Posts { get; set; }
+        public List<PostUnico> Posts { get; set; }
 
     }
 
-    public class Post 
+    public class PostUnico
     {
         public string ImagemPessoa { get; set; }
         public string LoginPessoa { get; set; }

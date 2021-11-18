@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Scout.Service.DTO.Request;
-using Scout.Service.DTO.Response;
 using System;
 using System.Threading.Tasks;
 
@@ -67,7 +66,7 @@ namespace Scout.Api.Controllers
         }
 
         [HttpGet("Imagem")]
-        public async Task<IActionResult> GetFotoPerfil([FromQuery] GetFotoDTO request)
+        public async Task<ActionResult> GetFotoPerfil([FromQuery] GetFotoDTO request)
         {
             var result = await _mediator.Send(request);
 
@@ -75,6 +74,17 @@ namespace Scout.Api.Controllers
                 return BadRequest(result.Erro);
 
             return Ok(result.Imagem);
+        }
+        
+        [HttpDelete("Pessoa")]
+        public async Task<ActionResult> DeletePessoa([FromQuery] Guid request)
+        {
+            var result = await _mediator.Send(new DeletePessoaDTO(request));
+
+            if (result.Erro != null)
+                return BadRequest(result.Erro);
+
+            return Ok(result.Success);
         }
     }
 }
