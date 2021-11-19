@@ -2,7 +2,7 @@
 {
     public static class QueryStringPost
     {
-        public static string BuscarPostsSQL = @"select 
+        public static string BuscarPostsSQL = @"select TOP @quantidade
 	                                            pe.imagemPessoa,
                                                 pe.login,
                                                 po.imagemPost,
