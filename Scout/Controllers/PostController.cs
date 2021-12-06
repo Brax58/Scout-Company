@@ -37,7 +37,7 @@ namespace Scout.Api.Controllers
             if (result.Erro != null)
                 return BadRequest(result.Erro);
 
-            return Ok();
+            return Ok(result.Posts);
         }
     }
 }

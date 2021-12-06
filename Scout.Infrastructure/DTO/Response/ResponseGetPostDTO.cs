@@ -10,7 +10,12 @@ namespace Scout.Infrastructure.DTO.Response
         public void AdicionarPost(string nome,string imagemPessoa,string imagemPost,string descricaoPost)
         {
 
-            Posts.Add(new PostUnicoResult(imagemPessoa,nome,imagemPost,descricaoPost));
+            Posts.Add(new PostUnicoResult(imagemPessoa, descricaoPost, nome,imagemPost));
+        }
+
+        public ResponseGetPostDTO()
+        {
+            Posts = new List<PostUnicoResult>();
         }
 
     }
@@ -32,7 +37,7 @@ namespace Scout.Infrastructure.DTO.Response
         public string ImagemPost { get; set; }
         public string DescricaoPost { get; set; }
 
-        public PostUnicoResult(string imagemPessoa, string nomePessoa, string imagemPost, string descricaoPost)
+        public PostUnicoResult(string imagemPessoa, string descricaoPost, string nomePessoa, string imagemPost)
         {
             ImagemPessoa = imagemPessoa;
             NomePessoa = nomePessoa;

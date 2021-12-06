@@ -35,12 +35,7 @@ namespace Scout.Infrastructure.Repository
             using (MySqlConnection conn = new MySqlConnection(connection))
             {
                 conn.Open();
-
-                var parametros = new DynamicParameters();
-                parametros.Add("@id", id);
-                parametros.Add("@quantidade", quantidade);
-
-               return await conn.QueryAsync<PostUnicoBanco>(QueryStringPost.BuscarPostsSQL, parametros);
+               return await conn.QueryAsync<PostUnicoBanco>(QueryStringPost.BuscarPostsSQL);
             }
         }
     }
