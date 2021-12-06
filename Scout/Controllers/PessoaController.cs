@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Scout.Service.DTO.Request;
+using Scout.Infrastructure.DTO.Request;
 using System;
 using System.Threading.Tasks;
 
@@ -10,14 +10,14 @@ namespace Scout.Api.Controllers
     [Route("api/[Controller]")]
     public class PessoaController : ControllerBase
     {
-        public readonly IMediator _mediator;
+        private readonly IMediator _mediator;
 
         public PessoaController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
-        [HttpPost]
+        [HttpPost("Cadastrar")]
         public async Task<ActionResult> InsertLogin([FromBody] InsertPessoaDTO request)
         {
             var result = await _mediator.Send(request);
@@ -28,8 +28,8 @@ namespace Scout.Api.Controllers
             return Ok(result.Id);
         }
 
-        [HttpGet("")]
-        public async Task<ActionResult> LogarPessoa([FromQuery] LogarSiteDTO request = null)
+        [HttpGet("login")]
+        public async Task<ActionResult> LogarPessoa([FromQuery] LogarSiteDTO request)
         {
             var result = await _mediator.Send(request);
 

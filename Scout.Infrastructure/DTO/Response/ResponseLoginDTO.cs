@@ -1,7 +1,7 @@
-﻿using Scout.Service.DTO.BaseDTO;
+﻿using Scout.Infrastructure.DTO.BaseDTO;
 using System;
 
-namespace Scout.Service.DTO.Response
+namespace Scout.Infrastructure.DTO.Response
 {
     public class ResponseLoginDTO : Error
     {

@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Scout.Infrastructure.DTO.Request;
 using Scout.Service.DTO.Request;
 using System;
 using System.Threading.Tasks;
@@ -29,9 +30,9 @@ namespace Scout.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetPosts([FromQuery] Guid id,[FromQuery] int quantidadePosts)
+        public async Task<ActionResult> GetPosts([FromQuery] Guid id, [FromQuery] int quantidadePosts)
         {
-            var result = await _mediator.Send(new BuscarPostsDTO(quantidadePosts,id));
+            var result = await _mediator.Send(new BuscarPostsDTO(quantidadePosts, id));
 
             if (result.Erro != null)
                 return BadRequest(result.Erro);

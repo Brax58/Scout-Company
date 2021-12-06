@@ -1,7 +1,7 @@
 ﻿using MediatR;
+using Scout.Infrastructure.DTO.Request;
+using Scout.Infrastructure.DTO.Response;
 using Scout.Infrastructure.Interface;
-using Scout.Service.DTO.Request;
-using Scout.Service.DTO.Response;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -17,7 +17,7 @@ namespace Scout.Service.Service
             _repository = repository;
         }
 
-        public Task<ResponseLoginDTO> Handle(LogarSiteDTO request, CancellationToken cancellationToken)
+        public async Task<ResponseLoginDTO> Handle(LogarSiteDTO request, CancellationToken cancellationToken)
         {
             var response = new ResponseLoginDTO();
 
@@ -26,11 +26,11 @@ namespace Scout.Service.Service
             if (pessoa == Guid.Empty)
             {
                 response.AddError("Pessoa não existe!", "404");
-                return Task.FromResult(response);
+                return await Task.FromResult(response);
             }
 
             response.Id = pessoa;
-            return Task.FromResult(response);
+            return await Task.FromResult(response);
         }
     }
 }

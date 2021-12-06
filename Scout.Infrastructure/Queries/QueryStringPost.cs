@@ -3,10 +3,10 @@
     public static class QueryStringPost
     {
         public static string BuscarPostsSQL = @"select TOP @quantidade
-	                                            pe.imagemPessoa,
-                                                pe.login,
-                                                po.imagemPost,
-                                                po.descricaoPost
+	                                            pe.imagemPessoa as ImagemPessoa,
+                                                pe.login as NomePessoa,
+                                                po.imagemPost as ImagemPost,
+                                                po.descricaoPost as DescricaoPost
                                         from pessoa pe 
                                         inner join post po
                                         on pe.id = po.idPessoa

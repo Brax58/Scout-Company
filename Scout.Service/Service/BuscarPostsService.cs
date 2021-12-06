@@ -1,8 +1,8 @@
 ﻿using MediatR;
+using Scout.Infrastructure.DTO.Response;
 using Scout.Infrastructure.Interface;
 using Scout.Service.DTO.Request;
-using Scout.Service.DTO.Response;
-using System.Collections.Generic;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -31,7 +31,17 @@ namespace Scout.Service.Service
                 return result;
             }
 
-            return await _PostRepository.GetPosts(request.Id,request.QuantidadePosts);
+            var posts = await _PostRepository.GetPosts(request.Id,request.QuantidadePosts);
+
+            foreach (var post in posts)
+            {
+                var imagemPessoa = Convert.ToBase64String(post.ImagemPessoa);
+                var imagemPost = Convert.ToBase64String(post.ImagemPost);
+
+                result.AdicionarPost(post.NomePessoa,imagemPessoa,imagemPost,post.DescricaoPost);
+            }
+
+            return result;
         }
     }
 }

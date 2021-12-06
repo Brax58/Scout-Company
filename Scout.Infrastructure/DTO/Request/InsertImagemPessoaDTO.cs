@@ -1,9 +1,9 @@
 ﻿using MediatR;
-using Scout.Service.DTO.Response;
+using Scout.Infrastructure.DTO.Response;
 using System;
 using System.Text.Json.Serialization;
 
-namespace Scout.Service.DTO.Request
+namespace Scout.Infrastructure.DTO.Request
 {
     public class InsertImagemPessoaDTO : IRequest<ResponseImagemDTO>
     {

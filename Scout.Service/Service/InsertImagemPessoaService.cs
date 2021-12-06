@@ -1,8 +1,7 @@
 ﻿using MediatR;
+using Scout.Infrastructure.DTO.Request;
+using Scout.Infrastructure.DTO.Response;
 using Scout.Infrastructure.Interface;
-using Scout.Infrastructure.Repository;
-using Scout.Service.DTO.Request;
-using Scout.Service.DTO.Response;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

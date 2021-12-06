@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Scout.Infrastructure\Scout.Infrastructure.csproj" />
     <ProjectReference Include="..\Scout.Service\Scout.Service.csproj" />
   </ItemGroup>
 

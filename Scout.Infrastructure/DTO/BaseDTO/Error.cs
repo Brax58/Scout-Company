@@ -1,4 +1,4 @@
-﻿namespace Scout.Service.DTO.BaseDTO
+﻿namespace Scout.Infrastructure.DTO.BaseDTO
 {
     public class Error
     {

@@ -1,9 +1,9 @@
 ﻿using Dapper;
 using MySqlConnector;
 using Scout.Domain.Entity;
+using Scout.Infrastructure.DTO.Response;
 using Scout.Infrastructure.Interface;
 using Scout.Infrastructure.Queries;
-using Scout.Service.DTO.Response;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,9 +12,11 @@ namespace Scout.Infrastructure.Repository
 {
     public class PostRepository : IPostRepository
     {
+        private const string connection = "Server=localhost;Database=scout;Uid=root;Pwd=";
+
         public async Task InsertPost(Post post)
         {
-            using (MySqlConnection conn = new MySqlConnection(Environment.GetEnvironmentVariable("ConnectionBase")))
+            using (MySqlConnection conn = new MySqlConnection(connection))
             {
                 conn.Open();
 
@@ -28,9 +30,9 @@ namespace Scout.Infrastructure.Repository
             }
         }
         
-        public async Task<IEnumerable<PostUnico>> GetPosts(Guid id,int quantidade)
+        public async Task<IEnumerable<PostUnicoBanco>> GetPosts(Guid id,int quantidade)
         {
-            using (MySqlConnection conn = new MySqlConnection(Environment.GetEnvironmentVariable("ConnectionBase")))
+            using (MySqlConnection conn = new MySqlConnection(connection))
             {
                 conn.Open();
 
@@ -38,7 +40,7 @@ namespace Scout.Infrastructure.Repository
                 parametros.Add("@id", id);
                 parametros.Add("@quantidade", quantidade);
 
-               return await conn.QueryAsync<PostUnico>(QueryStringPost.BuscarPostsSQL, parametros);
+               return await conn.QueryAsync<PostUnicoBanco>(QueryStringPost.BuscarPostsSQL, parametros);
             }
         }
     }

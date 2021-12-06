@@ -10,9 +10,11 @@ namespace Scout.Infrastructure.Repository
 {
     public class PessoaRepository : IPessoaRepository
     {
+        private const string connection = "Server=localhost;Database=scout;Uid=root;Pwd=";
+
         public async Task InsertPessoa(Pessoa pessoa)
         {
-            using (MySqlConnection conn = new MySqlConnection(Environment.GetEnvironmentVariable("ConnectionBase")))
+            using (MySqlConnection conn = new MySqlConnection(connection))
             {
                 conn.Open();
 
@@ -28,7 +30,7 @@ namespace Scout.Infrastructure.Repository
 
         public Guid GetPessoaByLogin(string login)
         {
-            using (MySqlConnection conn = new MySqlConnection(Environment.GetEnvironmentVariable("ConnectionBase")))
+            using (MySqlConnection conn = new MySqlConnection(connection))
             {
                 conn.Open();
 
@@ -41,7 +43,7 @@ namespace Scout.Infrastructure.Repository
 
         public string GetPessoaById(Guid id)
         {
-            using (MySqlConnection conn = new MySqlConnection(Environment.GetEnvironmentVariable("ConnectionBase")))
+            using (MySqlConnection conn = new MySqlConnection(connection))
             {
                 conn.Open();
 
@@ -54,7 +56,7 @@ namespace Scout.Infrastructure.Repository
 
         public byte[] GetFotoById(Guid id)
         {
-            using (MySqlConnection conn = new MySqlConnection(Environment.GetEnvironmentVariable("ConnectionBase")))
+            using (MySqlConnection conn = new MySqlConnection(connection))
             {
                 conn.Open();
 
@@ -67,7 +69,7 @@ namespace Scout.Infrastructure.Repository
 
         public async Task InsertImagem(Guid id, byte[] imagem)
         {
-            using (MySqlConnection conn = new MySqlConnection(Environment.GetEnvironmentVariable("ConnectionBase")))
+            using (MySqlConnection conn = new MySqlConnection(connection))
             {
                 conn.Open();
 
@@ -81,7 +83,7 @@ namespace Scout.Infrastructure.Repository
 
         public async Task InsertDescricao(Guid id, string descricao)
         {
-            using (MySqlConnection conn = new MySqlConnection(Environment.GetEnvironmentVariable("ConnectionBase")))
+            using (MySqlConnection conn = new MySqlConnection(connection))
             {
                 conn.Open();
 
@@ -95,7 +97,7 @@ namespace Scout.Infrastructure.Repository
 
         public async Task DeletePessoa(Guid id)
         {
-            using (MySqlConnection conn = new MySqlConnection(Environment.GetEnvironmentVariable("ConnectionBase")))
+            using (MySqlConnection conn = new MySqlConnection(connection))
             {
                 conn.Open();
 

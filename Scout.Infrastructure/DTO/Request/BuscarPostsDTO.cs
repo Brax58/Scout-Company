@@ -1,8 +1,10 @@
-﻿using System;
+﻿using MediatR;
+using Scout.Infrastructure.DTO.Response;
+using System;
 
 namespace Scout.Service.DTO.Request
 {
-    public class BuscarPostsDTO
+    public class BuscarPostsDTO : IRequest<ResponseGetPostDTO>
     {
 
         public int QuantidadePosts { get; set; }

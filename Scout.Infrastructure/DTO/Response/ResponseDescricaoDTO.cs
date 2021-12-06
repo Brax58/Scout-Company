@@ -1,6 +1,6 @@
-﻿using Scout.Service.DTO.BaseDTO;
+﻿using Scout.Infrastructure.DTO.BaseDTO;
 
-namespace Scout.Service.DTO.Response
+namespace Scout.Infrastructure.DTO.Response
 {
     public class ResponseDescricaoDTO : Error
     {
